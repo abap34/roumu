@@ -8,6 +8,9 @@ jobs:
   handle_remind:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout
+
       - name: Run roumusho action
         uses: ./.github/actions/roumusho
         with:

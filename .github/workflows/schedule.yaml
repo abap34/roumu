@@ -1,0 +1,38 @@
+name: Handle Remind Comments
+
+on:
+  issue_comment:
+    types: [created]  
+
+jobs:
+  handle_remind:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '21'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: .github/actions/reminder
+
+    - name: Run reminder action
+      run: node index.js
+      working-directory: .github/actions/reminder
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+        COMMENT_BODY: ${{ github.event.comment.body }}
+
+    - name: Commit and push reminder file
+      if: success()
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+        git add reminder_*.txt
+        git commit -m "Add reminder for issue #${{ github.event.issue.number }}"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

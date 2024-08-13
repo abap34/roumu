@@ -1,0 +1,15 @@
+name: "Simple Reminder Action"
+description: "Adds a reaction to reminder comments and saves them to a file."
+inputs:
+  GITHUB_TOKEN:
+    description: "GitHub Token"
+    required: true
+  ISSUE_NUMBER:
+    description: "The issue number"
+    required: true
+  COMMENT_BODY:
+    description: "The body of the comment"
+    required: true
+runs:
+  using: "node21"
+  main: "index.js"

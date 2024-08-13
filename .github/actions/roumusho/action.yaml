@@ -11,5 +11,5 @@ inputs:
     description: "The body of the comment"
     required: true
 runs:
-  using: "node21"
+  using: "node20"
   main: "index.js"

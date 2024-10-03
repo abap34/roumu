@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run roumusho action
-        uses: abap34/roumusho@44e9e5791fd995a9aacecde803900b62cbdfc3b1
+        uses: abap34/roumusho@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}

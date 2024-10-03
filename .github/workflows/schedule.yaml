@@ -12,12 +12,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run roumusho action
-        uses: abap34/roumusho@v0.3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          COMMENT_BODY: ${{ github.event.comment.body }}
-
+        if: contains(github.event.comment.body, '/remind')
+        run: |
+          echo "${{ github.event.comment.body }}" > reminder_${{ github.event.issue.number }}_$(date +%s).txt
+                   
       - name: Commit and push reminder file
         if: success()
         run: |

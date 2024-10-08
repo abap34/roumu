@@ -12,16 +12,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run roumusho action
-        if: contains(github.event.comment.body, '/remind')
         run: |
-          echo "${{ github.event.comment.body }}" > reminder_${{ github.event.issue.number }}_$(date +%s).txt
-                   
+          python3 script/get_remind.py "${{ github.event.comment.body }}" "${{ github.event.issue.number }}"
+
       - name: Commit and push reminder file
         if: success()
         run: |
           git config --global user.name "roumusho"
           git config --global user.email "actions@github.com"
-          git add reminder_*.txt
+          git add reminds/reminder_*.txt
           git commit -m "Add reminder for issue #${{ github.event.issue.number }}"
           git push origin HEAD:main 
         env:

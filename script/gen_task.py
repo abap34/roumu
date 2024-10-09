@@ -371,6 +371,7 @@ def gen_reminder(body: str, issue_number: int) -> None:
             "issue_number": issue_number,
             "deadline": extract_deadline(deadline).isoformat(),
             "remind": str(extract_remind(remind)),
+            "done": False,
         }
     )
 

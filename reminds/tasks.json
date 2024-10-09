@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "id": "5cc4f8d6-893a-47a0-aaa7-f1cb0230f390",
+        "task": "hello hello\r",
+        "issue_number": 1,
+        "deadline": "2024-10-10T23:59:59",
+        "remind": "0 8 * *"
+    }
+]

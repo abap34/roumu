@@ -27,5 +27,12 @@
         "issue_number": 1,
         "deadline": "3000-01-01T00:00:00",
         "remind": "0 8 * *"
+    },
+    {
+        "id": "45d9757d-ec7a-4fc0-89fb-898c26fa0c70",
+        "task": "TOEIC\u8abf\u3079\u308b\r",
+        "issue_number": 1,
+        "deadline": "2024-10-20T23:59:59",
+        "remind": "0 8 * *"
     }
 ]

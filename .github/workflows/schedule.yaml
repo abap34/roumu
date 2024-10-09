@@ -18,7 +18,7 @@ jobs:
 
       - name: Run roumusho action
         run: |
-          python3 script/gen_reminder.py "${{ github.event.comment.body }}" "${{ github.event.issue.number }}"
+          python3 script/gen_task.py "${{ github.event.comment.body }}" "${{ github.event.issue.number }}"
 
       - name: Commit and push reminder file
         if: success()

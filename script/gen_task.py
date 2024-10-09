@@ -3,6 +3,7 @@ import json
 import re
 
 # import doctest
+from cron import AnyValue, SpecificValue, CronSetting
 import sys
 import uuid
 import warnings
@@ -317,44 +318,6 @@ def extract_deadline(
 
     return datetime.datetime(3000, 1, 1, 0, 0)
 
-
-class AnyValue:
-    def __str__(self):
-        return "*"
-    
-class MultipleValue:
-    def __init__(self, n: int):
-        self.n = n
-
-    def __str__(self):
-        return f"*/{self.n}"
-
-
-class CronElement:
-    def __init__(self, value: Union[int, AnyValue, MultipleValue]):
-        self.value = value
-
-    def __str__(self):
-        return str(self.value)
-
-
-class CronSetting:
-    def __init__(
-        self,
-        minute: CronElement,
-        hour: CronElement,
-        day: CronElement,
-        month: CronElement,
-    ):
-        self.minute = minute
-        self.hour = hour
-        self.day = day
-        self.month = month
-
-    def __str__(self):
-        return f"{self.minute} {self.hour} {self.day} {self.month}"
-
-
 def extract_remind(body: str, current_time_getter=datetime.datetime.now) -> CronSetting:
     """
     extract_remind(body: str, current_time_getter=datetime.datetime.now) -> str
@@ -364,10 +327,10 @@ def extract_remind(body: str, current_time_getter=datetime.datetime.now) -> Cron
     今は 期日までの毎日朝 8:00 にリマインドするという形式のみ対応
     """
     return CronSetting(
-        CronElement(0),
-        CronElement(8),
-        CronElement(AnyValue()),
-        CronElement(AnyValue()),
+        month=AnyValue(),
+        day=AnyValue(),
+        hour=SpecificValue(8),
+        minute=SpecificValue(0),
     )
 
 

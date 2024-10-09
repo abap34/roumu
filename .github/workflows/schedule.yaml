@@ -11,12 +11,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # /tasks がコメントに含まれたら終わり
+      # /tasks がコメントに含まれていたら exit してしまう
       - name: Check if comment contains /tasks
         run: |
-          echo "${{ github.event.comment.body }}" | grep -q "/tasks"
-          if [ $? -ne 0 ]; then
-            exit 78
+          if [[ "${{ github.event.comment.body }}" == *"/tasks"* ]]; then
+            exit 0
+          else
+            exit 1
           fi
       
       - name: Install dependencies

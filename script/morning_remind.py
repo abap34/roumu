@@ -4,10 +4,11 @@ import sys
 import tabulate
 import warnings
 
-def load_tasks() -> dict:
+def load_tasks() -> list[Task]:
     with open('reminds/tasks.json', 'r') as f:
         task = json.load(f)
-    return task
+
+    return [Task.from_dict(t) for t in task]
 
 def task_list_message(tasks: list[Task]) -> str:
     """
@@ -40,7 +41,7 @@ def main():
     tasks = load_tasks()
 
     # 残りのタスクを全て抽出
-    remaining_tasks = [task for task in tasks if not task["done"]] 
+    remaining_tasks = [task for task in tasks if not task.done]
     message = task_list_message(remaining_tasks)
   
     with open("message.txt", "w") as f:

@@ -13,5 +13,12 @@
         "issue_number": 1,
         "deadline": "2024-10-20T23:59:59",
         "remind": "0 8 * *"
+    },
+    {
+        "id": "f498dc90-1a57-41d8-8a6f-ee3dfd845d32",
+        "task": "traPConf \u306e\u30b9\u30e9\u30a4\u30c9\r",
+        "issue_number": 1,
+        "deadline": "3000-01-01T00:00:00",
+        "remind": "0 8 * *"
     }
 ]

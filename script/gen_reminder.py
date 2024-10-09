@@ -389,7 +389,14 @@ def gen_reminder(body: str, issue_number: int) -> None:
     None
 
     """
-    task, deadline, remind, _ = body.split("\n")
+    lines = body.split("\n")
+    if len(lines) < 3:
+        warnings.warn("リマインドの行数が {len(lines)} 行で、3行以上必要です. スキップします.")
+
+    task = "\n".join(lines[:-2])
+    deadline = lines[-2]
+    remind = lines[-1]
+
 
     with open("reminds/tasks.json", "r") as f:
         tasks = json.load(f)

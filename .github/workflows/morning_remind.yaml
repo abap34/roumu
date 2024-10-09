@@ -14,10 +14,6 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v4
         
-        - name: Set Comment Body
-          if: github.event_name == 'issue_comment'
-          run: echo "${{ github.event.comment.body }}" > comment.txt
-
         - name: Install dependencies
           run: |
             python3 -m pip install --upgrade pip

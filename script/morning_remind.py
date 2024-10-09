@@ -26,7 +26,7 @@ def task_list_message(tasks: list[Task]) -> str:
     return tabulate.tabulate(
         table,
         headers=task.to_dict(exclude={"id", "done"}).keys(),
-        tablefmt="grid"
+        tablefmt="github"
     )
 
 

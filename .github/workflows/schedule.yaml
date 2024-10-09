@@ -25,7 +25,7 @@ jobs:
         run: |
           git config --global user.name "roumusho"
           git config --global user.email "actions@github.com"
-          git add reminds/reminder_*.txt
+          git add reminds/tasks.json
           git commit -m "Add reminder for issue #${{ github.event.issue.number }}"
           git push origin HEAD:main 
         env:

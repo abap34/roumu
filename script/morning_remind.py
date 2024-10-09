@@ -2,6 +2,7 @@ import json
 from task import Task
 import sys
 import tabulate
+import warnings
 
 def load_tasks() -> dict:
     with open('task.json', 'r') as f:
@@ -34,6 +35,7 @@ def main():
     if github_event_type == "issue_comment":
         with open('comment.txt', 'w') as f:
             if not '/tasks' in sys.argv[2]:
+                warnings.warn("/tasks が含まれていません。スキップします。")
                 return
     tasks = load_tasks()
 
@@ -44,3 +46,5 @@ def main():
     with open("message.txt", "w") as f:
         f.write(message)
 
+if __name__ == "__main__":
+    main()

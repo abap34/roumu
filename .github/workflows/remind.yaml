@@ -1,4 +1,4 @@
-name: Morning Task Reminder
+name: Task Reminder
 
 # 毎朝 8 時 or issue コメントが来た時
 on:
@@ -8,7 +8,7 @@ on:
     types: [created]
 
 jobs:
-    morning_remind:
+    remind:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repository
@@ -21,7 +21,7 @@ jobs:
 
         - name: Run remind message generator
           run: |
-            python3 script/morning_remind.py "${{ github.event_name }}" 
+            python3 script/remind.py "${{ github.event_name }}" 
             
         - name: Comment "message.txt" on issue
           run:

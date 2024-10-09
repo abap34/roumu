@@ -11,23 +11,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # /tasks がコメントに含まれていたら exit してしまう
-      - name: Check if comment contains /tasks
-        run: |
-          if [[ "${{ github.event.comment.body }}" == *"/tasks"* ]]; then
-            exit 0
-          else
-            exit 1
-          fi
-      
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run roumusho action
+      - name: Add task
+        if: contains(github.event.comment.body, '/remind')
         run: |
-          python3 script/gen_task.py "${{ github.event.comment.body }}" "${{ github.event.issue.number }}"
+          python3 script/add_task.py "${{ github.event.comment.body }}" "${{ github.event.issue.number }}"
+
+      - name: Done task
+        if: contains(github.event.comment.body, '/done')
+        run: |
+          python3 script/done_task.py "${{ github.event.comment.body }}" 
+          gh issue comment ${{ github.event.issue.number }} --body "$(cat message.txt)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          BODY: $(cat message.txt)
 
       - name: Commit and push reminder file
         if: success()

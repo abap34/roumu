@@ -1,0 +1,36 @@
+name: Morning Task Reminder
+
+# 毎朝 8 時 or issue コメントが来た時
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  issue_comment:
+    types: [created]
+
+jobs:
+    morning_remind:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        
+        - name: Set Comment Body
+          if: github.event_name == 'issue_comment'
+          run: echo "${{ github.event.comment.body }}" > comment.txt
+
+        - name: Install dependencies
+          run: |
+            python3 -m pip install --upgrade pip
+            pip install -r requirements.txt
+
+        - name: Run remind message generator
+          run: |
+            python3 morning_remind.py "${{ github.event_name }}" 
+            
+        - name: Comment "message.txt" on issue
+          run:
+            gh issue comment ${{ github.event.issue.number }} --body "$(cat message.txt)"
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_REPO: ${{ github.repository }}
+            NUMBER: ${{ github.event.issue.number }}

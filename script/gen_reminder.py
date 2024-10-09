@@ -391,9 +391,6 @@ def gen_reminder(body: str, issue_number: int) -> None:
     """
     task, deadline, remind, _ = body.split("\n")
 
-    if not "/remind" in body:
-        return
-
     with open("reminds/tasks.json", "r") as f:
         tasks = json.load(f)
 
@@ -413,11 +410,7 @@ def gen_reminder(body: str, issue_number: int) -> None:
 
 if __name__ == "__main__":
     # doctest.testmod()
-    # body = sys.argv[1]
-    # issue_number = int(sys.argv[2])
-    # gen_reminder(body, issue_number)
+    body = sys.argv[1]
+    issue_number = int(sys.argv[2])
+    gen_reminder(body, issue_number)
 
-    gen_reminder(
-        "タスク\n今日\n/remind\n",
-        1,
-    )

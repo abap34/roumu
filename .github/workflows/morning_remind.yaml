@@ -29,7 +29,7 @@ jobs:
             
         - name: Comment "message.txt" on issue
           run:
-            gh issue comment ${{ github.event.issue.number }} 
+            gh issue comment ${{ github.event.issue.number }} --body "$(cat message.txt)"
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             GH_REPO: ${{ github.repository }}

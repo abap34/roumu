@@ -6,5 +6,12 @@
         "deadline": "2024-10-09T23:59:59",
         "remind": "0 8 * *",
         "done": false
+    },
+    {
+        "id": "00518295-80bd-4f27-8fa1-3f2ba7069082",
+        "task": "\u6559\u990a\u5352\u8ad6\u306e\u611f\u60f3\r",
+        "issue_number": 1,
+        "deadline": "2024-10-20T23:59:59",
+        "remind": "0 8 * *"
     }
 ]

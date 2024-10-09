@@ -13,7 +13,7 @@
         "issue_number": 1,
         "deadline": "2024-10-20T23:59:59",
         "remind": "0 8 * *",
-        "done": false
+        "done": true
     },
     {
         "id": "f498dc90-1a57-41d8-8a6f-ee3dfd845d32",

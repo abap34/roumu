@@ -34,7 +34,7 @@ def main():
     github_event_type = sys.argv[1]
     if github_event_type == "issue_comment":
         with open('comment.txt', 'w') as f:
-            if not '/tasks' in sys.argv[2]:
+            if not '/tasks' in f.read():
                 warnings.warn("/tasks が含まれていません。スキップします。")
                 return
     tasks = load_tasks()

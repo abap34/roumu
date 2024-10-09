@@ -5,7 +5,7 @@ import tabulate
 import warnings
 
 def load_tasks() -> dict:
-    with open('task.json', 'r') as f:
+    with open('reminds/tasks.json', 'r') as f:
         task = json.load(f)
     return task
 

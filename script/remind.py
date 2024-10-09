@@ -32,7 +32,9 @@ def task_list_message(tasks: list[Task]) -> str:
         table.append(task_dict.values())
 
     return tabulate.tabulate(
-        table, headers=task.to_dict(exclude={"id"}).keys(), tablefmt="github"
+        table,
+        headers=["task", "issue_number", "deadline", "remind", "done"],
+        tablefmt="github",
     )
 
 

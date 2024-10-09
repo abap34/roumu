@@ -10,6 +10,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # /tasks がコメントに含まれたら終わり
+      - name: Check if comment contains /tasks
+        run: |
+          echo "${{ github.event.comment.body }}" | grep -q "/tasks"
+          if [ $? -ne 0 ]; then
+            exit 78
+          fi
       
       - name: Install dependencies
         run: |

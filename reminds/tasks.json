@@ -46,5 +46,13 @@
         "deadline": "2024-10-13T23:59:59",
         "remind": "0 8 * *",
         "done": false
+    },
+    {
+        "id": "c48ed499-d2d6-47be-8350-39076bebb68c",
+        "task": "/remind \r\n\u7814\u30d7\u30ed\u306e\u8ad6\u6587\u8aad\u3080\r",
+        "issue_number": 1,
+        "deadline": "2024-10-23T23:59:59",
+        "remind": "0 8 * *",
+        "done": false
     }
 ]

@@ -334,6 +334,12 @@ def extract_remind(body: str, current_time_getter=datetime.datetime.now) -> Cron
     )
 
 
+# /remind と改行を削除
+def remove_prefix(body: str) -> str:
+    body = body.replace("/remind", "").replace("\n", "")
+    return body
+
+
 def gen_reminder(body: str, issue_number: int) -> None:
     """
         gen_reminder(body: str, issue_number: int) -> None
@@ -357,6 +363,8 @@ def gen_reminder(body: str, issue_number: int) -> None:
         warnings.warn("リマインドの行数が {len(lines)} 行で、3行以上必要です. スキップします.")
 
     task = "\n".join(lines[:-2])
+    task = remove_prefix(task)
+    
     deadline = lines[-2]
     remind = lines[-1]
 

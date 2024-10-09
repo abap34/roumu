@@ -20,5 +20,12 @@
         "issue_number": 1,
         "deadline": "3000-01-01T00:00:00",
         "remind": "0 8 * *"
+    },
+    {
+        "id": "6611e447-ded3-427b-89eb-9b687b1ab862",
+        "task": "\u9662\u8a66\u8abf\u3079\u308b\r",
+        "issue_number": 1,
+        "deadline": "3000-01-01T00:00:00",
+        "remind": "0 8 * *"
     }
 ]
